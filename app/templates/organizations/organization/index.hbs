@@ -103,7 +103,9 @@
       </:card>
     </DataCard>
 
-    {{#if @model.representativeBody.associatedOrganizations}}
+    {{#if @model.associatedOrganizationsTaskInstance.isRunning}}
+      <AuLoader />
+    {{else if @model.associatedOrganizationsTaskInstance.value}}
       <DataCard>
         <:title>
           Gerelateerde organisaties
@@ -112,7 +114,7 @@
           <Card.Columns>
             <:left as |Item|>
               {{#each
-                @model.representativeBody.associatedOrganizations
+                @model.associatedOrganizationsTaskInstance.value
                 as |organization|
               }}
                 <Item>

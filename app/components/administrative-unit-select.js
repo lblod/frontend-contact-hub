@@ -15,12 +15,6 @@ export default class AdministrativeUnitSelectComponent extends Component {
   @service store;
   administrativeUnits;
 
-  constructor(...args) {
-    super(...args);
-
-    this.administrativeUnits = this.loadAdministrativeUnitsTask.perform();
-  }
-
   @restartableTask
   *loadAdministrativeUnitsTask(searchParams = '') {
     yield timeout(500);
@@ -35,6 +29,7 @@ export default class AdministrativeUnitSelectComponent extends Component {
           ].join(),
         },
       },
+      include: 'classification',
     };
 
     if (searchParams.trim() !== '') {

@@ -24,6 +24,8 @@ export default class AdministrativeUnitsAdministrativeUnitCoreDataRoute extends 
           'primary-site.contacts',
           'is-sub-organization-of',
           'is-associated-with',
+          'sub-organizations',
+          'resulted-from',
         ].join(),
       }
     );
