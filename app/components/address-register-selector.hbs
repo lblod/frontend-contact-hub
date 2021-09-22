@@ -1,0 +1,18 @@
+<div class="au-u-2-3@medium">
+    <AuLabel for="address">Adres</AuLabel>
+    <PowerSelect @triggerId="address" @allowClear={{true}} @disabled={{this.disabled}} @search={{perform this.search}}
+        @selected={{this.addressSuggestion}} @onChange={{perform this.selectSuggestion}}
+        @loadingMessage="Aan het laden..." @searchEnabled={{true}} @noMatchesMessage="Geen resultaten"
+        @searchMessage="Typ om te zoeken" as |suggestion|>
+        {{suggestion.fullAddress}}
+    </PowerSelect>
+</div>
+<div class="au-u-2-3@medium au-u-margin-top">
+    <AuLabel for="busNumber">Busnummer</AuLabel>
+
+    <AddressesRegisterBusNumberSelector @address={{this.addressWithBusNumber}} @options={{this.addressesWithBusNumbers}}
+        @onChange={{this.selectAddressWithBusNumber}} @disabled={{this.isDisabledBusNumberSelect}}
+        @allowClear={{false}} />
+    <AuHelpText>Staat het correcte busnummer niet in de lijst? <a href="mailto:LoketLokaalBestuur@vlaanderen.be"
+            class="au-c-link">Mail ons</a></AuHelpText>
+</div>

@@ -1,0 +1,9 @@
+<PowerSelect @allowClear={{@allowClear}} @disabled={{@disabled}} @placeholder={{this.placeholder}}
+    @selected={{@address}} @options={{@options}} @class="is-optional" @onChange={{@onChange}} @searchEnabled={{true}}
+    @loadingMessage="Aan het laden..." @noMatchesMessage="Geen resultaten" as |address|>
+    {{#if address.busNumber}}
+    Bus {{address.busNumber}}
+    {{else}}
+    Geen busnummer
+    {{/if}}
+</PowerSelect>
