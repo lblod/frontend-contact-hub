@@ -9,9 +9,10 @@ export default class OrganizationsOrganizationLocalInvolvementsEditController ex
   @service store;
 
   get hasValidationErrors() {
-    return this.model.involvements
-      .slice()
-      .some((involvement) => involvement.error);
+    return (
+      this.model.organization.error ||
+      this.model.involvements.slice().some((involvement) => involvement.error)
+    );
   }
 
   setup() {
@@ -85,6 +86,9 @@ export default class OrganizationsOrganizationLocalInvolvementsEditController ex
 
     let validationPromises = involvements.map((involvement) =>
       involvement.validate(),
+    );
+    validationPromises.push(
+      this.model.organization.validate({ involvementsPercentage: true }),
     );
     yield Promise.all(validationPromises);
 

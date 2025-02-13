@@ -129,7 +129,13 @@
           </td>
           {{#if @model.organization.isWorshipService}}
             <td>
-              {{#let involvement.error.percentage.message as |errorMessage|}}
+              {{#let
+                (or
+                  @model.organization.error.involvements.message
+                  involvement.error.percentage.message
+                )
+                as |errorMessage|
+              }}
                 <AuInput
                   @disabled={{this.isDisabledPercentage involvement}}
                   @error={{errorMessage}}

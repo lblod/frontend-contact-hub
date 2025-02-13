@@ -73,31 +73,7 @@ export default class LocalInvolvementModel extends AbstractValidationModel {
           INVOLVEMENT_TYPE.SUPERVISORY,
           INVOLVEMENT_TYPE.MID_FINANCIAL,
         ),
-        then: Joi.number()
-          .min(1)
-          .max(100)
-          .required()
-          .external(async (value, helpers) => {
-            const otherLocalInvolvements =
-              await this.getOtherLocalInvolvements();
-
-            const sumOtherPercentages = otherLocalInvolvements.reduce(
-              (percentageAcc, involvement) =>
-                percentageAcc + Number(involvement.percentage),
-              0,
-            );
-
-            if (
-              Number.isNaN(sumOtherPercentages) ||
-              sumOtherPercentages + Number(value) !== 100
-            ) {
-              return helpers.message(
-                'Het totaal van alle percentages moet gelijk zijn aan 100',
-              );
-            }
-
-            return value;
-          }),
+        then: Joi.number().min(1).max(100).required(),
         // TODO: enforce it is zero in this case?
         otherwise: Joi.number().empty('').allow(null),
       }).messages({
